@@ -14,10 +14,16 @@ class Navigation extends Component {
 
         return (
             <div >
-                <nav className="navbar navbar-dark bg-primary justify-content-center">
-                    <h1>Loan Application</h1>
-                </nav>
-                <BusinessInfo />
+                <div  className="container">
+                    <nav className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+                        <h4>Loan Application</h4>
+                    </nav>
+                </div>
+                <main role="main" className="container">
+                    <div className="jumbotron">
+                        <BusinessInfo />
+                    </div>
+                </main>
             </div>
         );
     }

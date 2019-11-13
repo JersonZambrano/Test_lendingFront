@@ -59,7 +59,7 @@ class BusinessInfo extends Component {
         return (
             <div className="container ">
                 <div className="col-md-12">
-                    <h4 className="text-left"> Company information</h4>
+                    <h5 className="text-left"> Company information</h5>
                     <form>
                         <div className="col-md-12 row">
                             <div className="form-group col-md-6">
@@ -100,7 +100,7 @@ class BusinessInfo extends Component {
                     </form>
                 </div>
                 <div className="col-md-12">
-                    <h4 className="text-left">Owner information</h4>
+                    <h5 className="text-left">Owner information</h5>
                     <form>
                         <div className="col-md-12 row">
                             <div className="form-group col-md-6">
