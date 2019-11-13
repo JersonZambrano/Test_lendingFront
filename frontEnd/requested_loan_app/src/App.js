@@ -1,19 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
 
 import Navigation from './components/Navigation'
 
-
-function App() {
-
-  return (
-    <div className="App">
-      <div className="container">
-        <Navigation />
-      </div>
-    </div>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/loan_app" component={Navigation} />
+    </Switch>
+  </BrowserRouter>
+)
 
 export default App;
