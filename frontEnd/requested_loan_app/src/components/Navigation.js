@@ -13,8 +13,8 @@ class Navigation extends Component {
     render() {
 
         return (
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+            <div >
+                <nav className="navbar navbar-dark bg-primary justify-content-center">
                     <h1>Loan Application</h1>
                 </nav>
                 <BusinessInfo />
