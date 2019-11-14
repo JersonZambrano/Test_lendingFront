@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const URL = 'https://smooth-helper-258818.appspot.com/loan_api'
 
 class BusinessInfo extends Component {
 
@@ -31,7 +32,7 @@ class BusinessInfo extends Component {
         })
     }
     enviarFormulario(formulario) {
-        axios.post('https://smooth-helper-258818.appspot.com/loan_api/register', this.state).then(result => {
+        axios.post(URL+'/register', this.state).then(result => {
             if (result.data != null && result.data['loan_decision'] != null) {
                 alert("Result of the request is:" + result.data['loan_decision'])
                 this.setState({

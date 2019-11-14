@@ -15,26 +15,22 @@ class RequestedLoanHandler(Handler.AbstractHandler):
         try:
             jsonData = json.loads(data)
             if ('business_requested_amount' in jsonData):
-                if (jsonData['business_requested_amount'] == '' or jsonData['business_requested_amount'] == None):
-                    self.send_response({"description":" Required \"Requested amount\""}, HTTPStatus.BAD_REQUEST)
-                    self.finish()
-                else:
-                    requested_amount = float(jsonData['business_requested_amount'])
+                requested_amount = float(jsonData['business_requested_amount'])
+                if(requested_amount != '' and requested_amount != None):
                     response = verifyLoanDecision(requested_amount)
-                    print(response);
                     json_tosend = {
                         "loan_decision": response}
-                    if constants.REQUEST_LOAN_INVALID != response:
-                        self.send_response(json_tosend, HTTPStatus.OK)
-                    else:
+                    if(response == constants.REQUEST_LOAN_INVALID):
                         self.send_response(json_tosend, HTTPStatus.BAD_REQUEST)
-                    self.finish()
+                    self.send_response(json_tosend, HTTPStatus.OK)
+                else:
+                    self.send_response(
+                        {"description": " Required \"Requested amount\""}, HTTPStatus.BAD_REQUEST)
             else:
                 self.send_response(
-                    {"bad_request": "badRequest"}, HTTPStatus.BAD_REQUEST)
-                self.finish()
-
-        except JSONDecodeError or ValueError as error:
-            raise InvalidData(error)
+                    {"bad_request": "required data: \"Requested amount\""}, HTTPStatus.BAD_REQUEST)
+        except ValueError as error:
+            self.send_response(
+                {"bad_request": "Data incorrect"}, HTTPStatus.BAD_REQUEST)
         except web.HTTPError as error:
             raise ServerError(error)
