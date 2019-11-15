@@ -20,15 +20,10 @@ class RequestedLoanHandler(Handler.AbstractHandler):
                     response = verifyLoanDecision(requested_amount)
                     json_tosend = {
                         "loan_decision": response}
-                    if(response == constants.REQUEST_LOAN_INVALID):
-                        self.send_response(json_tosend, HTTPStatus.BAD_REQUEST)
-                    self.send_response(json_tosend, HTTPStatus.OK)
-                else:
-                    self.send_response(
-                        {"description": " Required \"Requested amount\""}, HTTPStatus.BAD_REQUEST)
-            else:
-                self.send_response(
-                    {"bad_request": "required data: \"Requested amount\""}, HTTPStatus.BAD_REQUEST)
+                    self.send_response(json_tosend, HTTPStatus.BAD_REQUEST if(
+                        response == constants.REQUEST_LOAN_INVALID) else HTTPStatus.OK)
+            self.send_response(
+                {"bad_request": "required data: \"Requested amount\""}, HTTPStatus.BAD_REQUEST)
         except ValueError as error:
             self.send_response(
                 {"bad_request": "Data incorrect"}, HTTPStatus.BAD_REQUEST)

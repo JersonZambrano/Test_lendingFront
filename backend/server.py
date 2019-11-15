@@ -15,7 +15,7 @@ def main():
 	portHandler = PORTHANDLER.RequestedLoanHandler
 	application = tornado.web.Application([(r"/", HANDLER.HttpDefaultHandler),(r"/loan_api/(?P<action>[A-Za-z]+)?", portHandler)], debug=True)
 	application.listen(PARAMETER.PORT)
-	print("Ya esa corriendo")
+	print("Start Server")
 	tornado.ioloop.IOLoop.current().start()
 
 if __name__ == '__main__':
